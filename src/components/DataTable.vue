@@ -51,7 +51,7 @@
       <el-table-column prop="b02ncl" label="B02[N-Cl]" align="center" width="100">
       </el-table-column>
     </el-table-column>
-    <el-table-column label="定量实验值" align="center">
+    <el-table-column v-if="!isForecast" label="定量实验值" align="center">
       <el-table-column :prop="dingliang.prop" :label="dingliang.label" align="center" width="105">
       </el-table-column>
     </el-table-column>
@@ -61,7 +61,12 @@
       <el-table-column prop="preValue" label="预测值" align="center" width="70">
       </el-table-column>
     </el-table-column>
-    <el-table-column v-if="isForecast" prop="preValue" label="预测值" align="center" width="90">
+    <el-table-column v-if="isForecast" label="预测值" align="center" width="90">
+      <template slot-scope="scope">
+        <span v-if="scope.row.preValue === '0'">I</span>
+        <span v-if="scope.row.preValue === '1'">A</span>
+        <span v-if="scope.row.preValue === 'A' || scope.row.preValue==='I'" v-text="scope.row.preValue"></span>
+      </template>
     </el-table-column>
   </el-table>
 </div>

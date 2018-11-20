@@ -2,19 +2,27 @@
 <div class="setting-result">
   <el-tabs type="border-card" @tab-click="handleClick" style="min-height:500px;" v-model="selectTab">
     <el-tab-pane label="大型溞慢性毒素" name="daphChr">
-      <DataTable :loading="tableObj['1'].loading" :type="tableObj['1'].type" :tableData="tableObj['1'].list" :isForecast="false"></DataTable>
+      <div class="tip"><span v-if="!isForecast">NOEC_21d值≤1mg/L的物质划分为毒性物质，否则划分为无毒性物质。</span>I表示无毒，A表示有毒</div>
+      <DataTable :loading="tableObj['1'].loading" :type="tableObj['1'].type" :tableData="tableObj['1'].list" :isForecast="isForecast"></DataTable>
+      </br>
       <el-pagination v-if="tableObj['1'].list.length > 0" layout="prev, pager, next, total" :current-page.sync="tableObj['1'].pageNo" background :total="tableObj['1'].total" @current-change="handleCurrentChange($event,1)"></el-pagination>
     </el-tab-pane>
     <el-tab-pane label="鱼类慢性毒素" name="fishChr">
-      <DataTable :loading="tableObj['2'].loading" :type="tableObj['2'].type" :tableData="tableObj['2'].list" :isForecast="false"></DataTable>
+      <div class="tip">LC500_96h值≤100mg/L的物质划分为毒性物质，否则划分为无毒性物质。I表示无毒，A表示有毒</div>
+      <DataTable :loading="tableObj['2'].loading" :type="tableObj['2'].type" :tableData="tableObj['2'].list" :isForecast="isForecast"></DataTable>
+      </br>
       <el-pagination v-if="tableObj['2'].list.length > 0" layout="total, prev, pager, next" :current-page.sync="tableObj['2'].pageNo" background :total="tableObj['2'].total" @current-change="handleCurrentChange($event,2)"></el-pagination>
     </el-tab-pane>
     <el-tab-pane label="藻类慢性毒素" name="algchr">
-      <DataTable :loading="tableObj['3'].loading" :type="tableObj['3'].type" :tableData="tableObj['3'].list" :isForecast="false"></DataTable>
+      <div class="tip">NOEC_72h值≤1mg/L的物质划分为毒性物质，否则划分为无毒性物质。I表示无毒，A表示有毒</div>
+      <DataTable :loading="tableObj['3'].loading" :type="tableObj['3'].type" :tableData="tableObj['3'].list" :isForecast="isForecast"></DataTable>
+      </br>
       <el-pagination v-if="tableObj['3'].list.length > 0" layout="total, prev, pager, next" :current-page.sync="tableObj['3'].pageNo" background :total="tableObj['3'].total" @current-change="handleCurrentChange($event,3)"></el-pagination>
     </el-tab-pane>
     <el-tab-pane label="大型溞急性毒素" name="daphAcu">
-      <DataTable :loading="tableObj['4'].loading" :type="tableObj['4'].type" :tableData="tableObj['4'].list" :isForecast="false"></DataTable>
+      <div class="tip">EC50_48h值≤100mg/L的物质划分为毒性物质，否则划分为无毒性物质。I表示无毒，A表示有毒</div>
+      <DataTable :loading="tableObj['4'].loading" :type="tableObj['4'].type" :tableData="tableObj['4'].list" :isForecast="isForecast"></DataTable>
+      </br>
       <el-pagination v-if="tableObj['4'].list.length > 0" layout="total, prev, pager, next" :current-page.sync="tableObj['4'].pageNo" background :total="tableObj['4'].total" @current-change="handleCurrentChange($event,4)"></el-pagination>
     </el-tab-pane>
   </el-tabs>
@@ -32,6 +40,7 @@ export default {
   data() {
     return {
       selectTab: "daphChr",
+      isForecast: false,
       tableObj: {
         "1": {
           url: "/data/set/daphchr/list",
@@ -72,7 +81,11 @@ export default {
       }
     }
   },
-  created() {},
+  created() {
+    if (this.$route.fullPath === "/result/new") {
+      this.isForecast = true;
+    }
+  },
   watch: {
     dataType: "refresh"
   },
@@ -87,6 +100,11 @@ export default {
       this.tableObj["2"].pageNo = 1;
       this.tableObj["3"].pageNo = 1;
       this.tableObj["4"].pageNo = 1;
+      if (this.$route.fullPath === "/result/new") {
+        this.isForecast = true;
+      } else {
+        this.isForecast = false;
+      }
       this.getResult(1);
     },
     getResult(type) {
@@ -117,4 +135,9 @@ export default {
 </script>
 
 <style>
+.setting-result .tip {
+  text-align: left;
+  font-size: 14px;
+  color: #f50404;
+}
 </style>

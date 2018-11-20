@@ -5,13 +5,13 @@
       <el-menu style="" router :default-active="defaultActive" @select="handleSelect">
         <el-submenu index="1">
           <template slot="title">
-            <span class="my-left-border"></span>设置训练数据
+            <span class="my-left-border"></span>数据预览
           </template>
           <el-menu-item index="/result/train">训练集</el-menu-item>
           <el-menu-item index="/result/validate">验证集</el-menu-item>
-          <el-menu-item index="/result/new">新进化合物</el-menu-item>
+          <el-menu-item index="/result/new">预测记录</el-menu-item>
         </el-submenu>
-        <el-menu-item index="/forecast"><span class="my-left-border"></span>化学品毒性预测</el-menu-item>
+        <el-menu-item index="/forecast"><span class="my-left-border"></span>化学品生态毒性预测</el-menu-item>
       </el-menu>
     </el-col>
     <el-col :span="20" :style="{minHeight:minHeight+'px'}" class="overFlow">

@@ -1,6 +1,6 @@
 <template>
 <div class="forecast-input">
-  <el-form ref="formSingle" :model="formSingle" :rules="rulesSingle" label-width="120px" style="width:60%;margin: 100px auto;text-align: left;">
+  <el-form ref="formSingle" :model="formSingle" :rules="rulesSingle" label-width="140px" style="width:70%;margin: 100px auto;text-align: left;">
     <el-form-item label="待预测毒性" prop="checkListSingle">
       <el-checkbox-group v-model="formSingle.checkListSingle">
         <el-checkbox label="1">大型溞慢性毒性</el-checkbox>
@@ -14,6 +14,9 @@
     </el-form-item>
     <el-form-item label="SMILES NO." prop="SMILESNO">
       <el-input v-model="formSingle.SMILESNO" style="width:400px"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <div class="tip">说明：本软件用于化学品生态毒性预测，待预测毒性为必选且可多选，CAS NO和SMILES NO为必填项。软件预测时间根据化学品的不同会有差异，此过程约需要两分钟。</div>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="getResult('formSingle')" style="margin-left:150px;">预&nbsp;&nbsp;测</el-button>
@@ -134,5 +137,21 @@ export default {
 <style>
 .forecast-pages {
   padding: 50px;
+}
+
+.el-form .el-form-item__label,
+.el-checkbox__label {
+  font-size: 14px !important;
+}
+
+.el-form .tip {
+  font-size: 14px;
+  color: #ddd;
+  width: 555px;
+  line-height: 20px;
+}
+
+.el-form-item {
+  margin-bottom: 30px;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
 <div class="header-wrap">
-  LOGO 南京环境科学研究所XXX系统
+  <img src="../assets/logo.jpg" style="width:90px;height:90px;"></img>
+  <div class="header">化学品生态毒理参数预测软件</div>
 </div>
 </template>
 
@@ -21,9 +22,17 @@ export default {
 </script>
 
 <style>
-.header-wrap{
+.header-wrap {
   height: 90px;
   background-color: #fff;
+  display: flex;
+  padding-left: 55px;
 }
 
+.header-wrap .header {
+  font-size: 30px;
+  padding-top: 20px;
+  padding-left: 15px;
+  text-align: left;
+}
 </style>

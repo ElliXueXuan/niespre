@@ -5,15 +5,19 @@
   </div>
   <el-tabs type="border-card" @tab-click="handleClick" style="min-height:500px;">
     <el-tab-pane v-if="type.indexOf('1') > -1" label="大型溞慢性毒素">
+      <div class="tip">I表示无毒，A表示有毒</div>
       <DataTable :loading="loading" :type="type1" :tableData="list1" :isForecast="true"></DataTable>
     </el-tab-pane>
     <el-tab-pane v-if="type.indexOf('2') > -1" label="鱼类慢性毒素">
+      <div class="tip">I表示无毒，A表示有毒</div>
       <DataTable :loading="loading" :type="type2" :tableData="list2" :isForecast="true"></DataTable>
     </el-tab-pane>
     <el-tab-pane v-if="type.indexOf('3') > -1" label="藻类慢性毒素">
+      <div class="tip">I表示无毒，A表示有毒</div>
       <DataTable :loading="loading" :type="type3" :tableData="list3" :isForecast="true"></DataTable>
     </el-tab-pane>
     <el-tab-pane v-if="type.indexOf('4') > -1" label="大型溞急性毒素">
+      <div class="tip">I表示无毒，A表示有毒</div>
       <DataTable :loading="loading" :type="type4" :tableData="list4" :isForecast="true"></DataTable>
     </el-tab-pane>
   </el-tabs>
@@ -87,4 +91,9 @@ export default {
 </script>
 
 <style>
+.forecast-result .tip {
+  text-align: left;
+  font-size: 14px;
+  color: #f50404;
+}
 </style>
