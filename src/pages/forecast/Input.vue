@@ -16,7 +16,7 @@
       <el-input v-model="formSingle.SMILESNO" style="width:400px"></el-input>
     </el-form-item>
     <el-form-item>
-      <div class="tip">说明：本软件用于化学品生态毒性预测，待预测毒性为必选且可多选，CAS NO和SMILES NO为必填项。软件预测时间根据化学品的不同会有差异，此过程约需要两分钟。</div>
+      <div class="tip">说明：本软件用于化学品生态毒性预测，待预测毒性为必选且可多选，CAS NO和SMILES NO为必填项。软件预测时间根据化学品的不同会有差异，此过程最长约需要两分钟。</div>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="getResult('formSingle')" style="margin-left:150px;">预&nbsp;&nbsp;测</el-button>
