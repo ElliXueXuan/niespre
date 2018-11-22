@@ -56,9 +56,19 @@
       </el-table-column>
     </el-table-column>
     <el-table-column v-if="!isForecast" label="定性值" align="center">
-      <el-table-column prop="expValue" label="实验值" align="center" width="70">
+      <el-table-column label="实验值" align="center" width="70">
+		<template slot-scope="scope">
+        <span v-if="scope.row.expValue === '0'">I</span>
+        <span v-if="scope.row.expValue === '1'">A</span>
+        <span v-if="scope.row.expValue === 'A' || scope.row.expValue==='I'" v-text="scope.row.expValue"></span>
+      </template>
       </el-table-column>
-      <el-table-column prop="preValue" label="预测值" align="center" width="70">
+      <el-table-column label="预测值" align="center" width="70">
+		<template slot-scope="scope">
+        <span v-if="scope.row.preValue === '0'">I</span>
+        <span v-if="scope.row.preValue === '1'">A</span>
+        <span v-if="scope.row.preValue === 'A' || scope.row.preValue==='I'" v-text="scope.row.preValue"></span>
+      </template>
       </el-table-column>
     </el-table-column>
     <el-table-column v-if="isForecast" label="预测值" align="center" width="90">
